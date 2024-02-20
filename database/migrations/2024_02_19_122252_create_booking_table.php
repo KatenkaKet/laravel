@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('booking');
         Schema::create('booking', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->unsignedBigInteger('room_id');
