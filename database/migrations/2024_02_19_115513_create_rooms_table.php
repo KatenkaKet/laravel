@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('room', function (Blueprint $table) {
+        Schema::create('rooms', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->unsignedBigInteger('corpus_id');
-            $table->foreign('corpus_id')->references('id')->on('corpus');
+            $table->foreign('corpus_id')->references('id')->on('corpuses');
             $table->unsignedInteger('room_number');
             $table->unsignedInteger('bed_number');
             $table->unsignedInteger('price');
@@ -27,9 +27,9 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('room', function (Blueprint $table){
-            $table->dropForeign('room_corpus_id_foreign');
+            $table->dropForeign('rooms_corpus_id_foreign');
         });
-        Schema::dropIfExists('room');
+        Schema::dropIfExists('rooms');
 
     }
 };

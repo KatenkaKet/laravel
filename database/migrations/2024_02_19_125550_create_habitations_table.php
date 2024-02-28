@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('habitation', function (Blueprint $table) {
+        Schema::create('habitations', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->unsignedBigInteger('room_id');
             $table->unsignedBigInteger('guest_id');
-            $table->foreign('room_id')->references('id')->on('room');
-            $table->foreign('guest_id')->references('id')->on('guest');
+            $table->foreign('room_id')->references('id')->on('rooms');
+            $table->foreign('guest_id')->references('id')->on('guests');
             $table->date('check_in');
             $table->date('check_out');
             $table->unsignedInteger('guest_number');
@@ -28,10 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('habitation', function (Blueprint $table){
-            $table->dropForeign('habitation_room_id_foreign');
-            $table->dropForeign('habitation_guest_id_foreign');
+        Schema::table('habitations', function (Blueprint $table){
+            $table->dropForeign('habitations_room_id_foreign');
+            $table->dropForeign('habitations_guest_id_foreign');
         });
-        Schema::dropIfExists('habitation');
+        Schema::dropIfExists('habitations');
     }
 };

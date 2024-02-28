@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CorpusController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,7 @@ Route::get('/', function () {
 Route::get('/hello', function (){
     return view('hello', ['title' => 'Hello world!']);
 });
+
+Route::get('/corpuses', [CorpusController::class, 'index']);
+
+Route::get('/corpus/{id}', [CorpusController::class, 'show']);
