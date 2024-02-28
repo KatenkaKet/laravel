@@ -11,10 +11,10 @@
     <td>id</td>
     <td>Наименование</td>
     </thead>
-    @foreach($corpuses as $corpus_model)
+    @foreach($corpuses as $corpus)
     <tr>
-        <td>{{$corpus_model->id}}</td>
-        <td>{{$corpus_model->corpus_name}}</td>
+        <td>{{$corpus->id}}</td>
+        <td>{{$corpus->corpus_name}}</td>
     </tr>
     @endforeach
 </table>

@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class habitation_model extends Model
+class Quest extends Model
 {
-    protected $table = 'habitation';
     use HasFactory;
 }

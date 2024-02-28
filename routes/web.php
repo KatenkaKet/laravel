@@ -27,3 +27,9 @@ Route::get('/hello', function (){
 Route::get('/corpuses', [CorpusController::class, 'index']);
 
 Route::get('/corpus/{id}', [CorpusController::class, 'show']);
+
+Route::get('/room', [\App\Http\Controllers\RoomController::class, 'index']);
+
+
+
+

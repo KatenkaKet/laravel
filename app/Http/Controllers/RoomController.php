@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Corpus;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
-class CorpusController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('corpuses',
-            ['corpuses' => Corpus::all()]);
+        return view('rooms', [
+            'rooms' => Room::all()
+        ]);
     }
 
     /**
@@ -37,9 +38,7 @@ class CorpusController extends Controller
      */
     public function show(string $id)
     {
-        return view('corpus', [
-            'corpus' => Corpus::all()->where('id', $id)->first()
-        ]);
+        //
     }
 
     /**
