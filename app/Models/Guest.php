@@ -7,15 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Room extends Model
+class Guest extends Model
 {
     use HasFactory;
-    public function corpus(): BelongsTo
+    public function rooms(): BelongsToMany
     {
-        return $this->belongsTo(Corpus::class);
-    }
-    public function guest(): BelongsToMany
-    {
-        return $this->belongsToMany(Guest::class, 'reservations');
+        return $this->belongsToMany(Room::class, 'reservations')
+            ->withPivot(['check_in', 'check_out']);
     }
 }

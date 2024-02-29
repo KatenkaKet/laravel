@@ -8,8 +8,10 @@
 <h2> Список корпусов</h2>
 <table border="1">
     <thead>
-    <td>id</td>
-    <td>Наименование</td>
+    <tr>
+        <td>id</td>
+        <td>Наименование</td>
+    </tr>
     </thead>
     @foreach($corpuses as $corpus)
     <tr>

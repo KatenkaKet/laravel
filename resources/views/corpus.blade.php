@@ -9,11 +9,13 @@
     @if($corpus)
     <table border="1">
         <thead>
-            <td>id</td>
-            <td>Имя корпуса</td>
-            <td>Номер комнаты</td>
-            <td>Количество кроватей</td>
-            <td>Цена</td>
+            <tr>
+                <td>id</td>
+                <td>Имя корпуса</td>
+                <td>Номер комнаты</td>
+                <td>Количество кроватей</td>
+                <td>Цена</td>
+            </tr>
         </thead>
         @foreach($corpus->rooms as $room)
             <tr>

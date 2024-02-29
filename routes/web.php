@@ -30,6 +30,6 @@ Route::get('/corpus/{id}', [CorpusController::class, 'show']);
 
 Route::get('/room', [\App\Http\Controllers\RoomController::class, 'index']);
 
-
+Route::get('/guest/{id}', [\App\Http\Controllers\GuestController::class, 'show']);
 
 
