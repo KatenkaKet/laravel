@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guest;
 use App\Models\Room;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,9 @@ class RoomController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('room', [
+            'room'=>Room::all()->where('id', $id)->first()
+        ]);
     }
 
     /**

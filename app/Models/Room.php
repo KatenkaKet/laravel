@@ -16,6 +16,7 @@ class Room extends Model
     }
     public function guest(): BelongsToMany
     {
-        return $this->belongsToMany(Guest::class, 'reservations');
+        return $this->belongsToMany(Guest::class, 'reservations')
+            ->withPivot(['check_in', 'check_out']);
     }
 }

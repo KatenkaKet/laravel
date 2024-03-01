@@ -32,4 +32,5 @@ Route::get('/room', [\App\Http\Controllers\RoomController::class, 'index']);
 
 Route::get('/guest/{id}', [\App\Http\Controllers\GuestController::class, 'show']);
 
+Route::get('/room/{id}', [\App\Http\Controllers\RoomController::class, 'show']);
 
