@@ -31,5 +31,6 @@
             </tr>
         @endforeach
     </table>
+    {{$rooms->links()}}
 </body>
 </html>
