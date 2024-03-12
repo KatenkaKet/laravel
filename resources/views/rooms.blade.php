@@ -10,11 +10,12 @@
         <thead>
         <tr>
             <td>id</td>
-            <td>Имя корпуса</td>
+            <td>id корпуса</td>
             <td>Номер комнаты</td>
             <td>Количество кроватей</td>
             <td>Цена</td>
             <td>Название корпуса</td>
+            <td>Действие</td>
         </tr>
         </thead>
         @foreach($rooms as $room)
@@ -25,6 +26,8 @@
                 <td>{{$room->bed_number}}</td>
                 <td>{{$room->price}}</td>
                 <td>{{$room->corpus->corpus_name}}</td>
+                <td><a href="{{url('room/destroy/'.$room->id)}}">Удалить</a>
+                    <a href="{{url('room/edit/'.$room->id)}}">Редактирование</a></td>
             </tr>
         @endforeach
     </table>

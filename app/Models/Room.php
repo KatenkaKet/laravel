@@ -9,7 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Room extends Model
 {
+    public $timestamps = false;
     use HasFactory;
+    protected $fillable = [
+      'corpus_id',
+      'room_number',
+      'bed_number',
+      'price'
+    ];
     public function corpus(): BelongsTo
     {
         return $this->belongsTo(Corpus::class);

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Corpus;
 use App\Models\Guest;
 use App\Models\Room;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use function Laravel\Prompts\table;
 
 class RoomController extends Controller
 {
@@ -23,7 +28,9 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('room_create', [
+            'corpuses' =>Corpus::all()
+        ]);
     }
 
     /**
@@ -31,7 +38,22 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+           'corpus_id' => 'integer',
+           'room_number' => [
+               'required',
+               'integer',
+               'gt:0',
+               Rule::unique('rooms')->where(function ($query) use ($request) {
+                   return $query->where('corpus_id', $request->corpus_id);
+               })
+           ],
+           'bed_number' => 'required|integer|gt:0',
+           'price' => 'required|integer|gt:0'
+        ]);
+        $room = new Room($validated);
+        $room->save();
+        return redirect('/room');
     }
 
     /**
@@ -49,7 +71,10 @@ class RoomController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('room_edit', [
+            'room' => Room::all()->where('id', $id)->first(),
+            'corpuses' => Corpus::all()
+        ]);
     }
 
     /**
@@ -57,7 +82,26 @@ class RoomController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'corpus_id' => 'integer',
+            'room_number' => [
+                'required',
+                'integer',
+                'gt:0',
+                Rule::unique('rooms')->where(function ($query) use ($request) {
+                    return $query->where('corpus_id', $request->corpus_id);
+                })
+            ],
+            'bed_number' => 'required|integer|gt:0',
+            'price' => 'required|integer|gt:0'
+        ]);
+        $room = Room::all()->where('id', $id)->first();
+        $room->corpus_id = $request->input('corpus_id');
+        $room->room_number = $request->input('room_number');
+        $room->bed_number = $request->input('bed_number');
+        $room->price = $request->input('price');
+        $room->update();
+        return redirect('/room');
     }
 
     /**
@@ -65,6 +109,7 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Room::destroy($id);
+        return redirect('/room');
     }
 }
