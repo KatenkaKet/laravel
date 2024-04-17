@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Guest extends Model
 {
     use HasFactory;
+    protected $table = 'guests';
+
     public function rooms(): BelongsToMany
     {
         return $this->belongsToMany(Room::class, 'reservations')

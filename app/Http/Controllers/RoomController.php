@@ -7,6 +7,7 @@ use App\Models\Guest;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use function Laravel\Prompts\table;
@@ -110,6 +111,11 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
+        if(! Gate::allows('destroy-room', Room::all()->where('id', $id)->first())){
+            return redirect('/error')->with('message',
+            'У вас нет разрешения на удаление товара номер ' . $id);
+        }
+
         Room::destroy($id);
         return redirect('/room');
     }
