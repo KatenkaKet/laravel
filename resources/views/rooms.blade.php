@@ -1,36 +1,40 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-11</title>
-</head>
-<body>
-<h2>Список комнат</h2>
-    <table border="1">
-        <thead>
-        <tr>
-            <td>id</td>
-            <td>id корпуса</td>
-            <td>Номер комнаты</td>
-            <td>Количество кроватей</td>
-            <td>Цена</td>
-            <td>Название корпуса</td>
-            <td>Действие</td>
-        </tr>
-        </thead>
-        @foreach($rooms as $room)
+@extends('layout')
+@section('content')
+<div class="row justify-content-center" style="margin: 2rem">
+    <h2 class="mt-3">Список комнат</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
             <tr>
-                <td>{{$room->id}}</td>
-                <td>{{$room->corpus_id}}</td>
-                <td>{{$room->room_number}}</td>
-                <td>{{$room->bed_number}}</td>
-                <td>{{$room->price}}</td>
-                <td>{{$room->corpus->corpus_name}}</td>
-                <td><a href="{{url('room/destroy/'.$room->id)}}">Удалить</a>
-                    <a href="{{url('room/edit/'.$room->id)}}">Редактирование</a></td>
+                <th>id</th>
+                <th>id корпуса</th>
+                <th>Номер комнаты</th>
+                <th>Количество кроватей</th>
+                <th>Цена</th>
+                <th>Название корпуса</th>
+                <th>Действие</th>
             </tr>
-        @endforeach
-    </table>
+            </thead>
+            <tbody>
+            @foreach($rooms as $room)
+                <tr>
+                    <td>{{$room->id}}</td>
+                    <td>{{$room->corpus_id}}</td>
+                    <td>{{$room->room_number}}</td>
+                    <td>{{$room->bed_number}}</td>
+                    <td>{{$room->price}}</td>
+                    <td>{{$room->corpus->corpus_name}}</td>
+                    <td>
+                        <a href="{{url('room/destroy/'.$room->id)}}" class="btn btn-danger">Удалить</a>
+                        <a href="{{url('room/edit/'.$room->id)}}" class="btn btn-primary">Редактирование</a>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+
     {{$rooms->links()}}
-</body>
-</html>
+</div>
+@endsection

@@ -1,14 +1,10 @@
-@php use Illuminate\Support\Carbon; @endphp
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-11</title>
-</head>
-<body>
-<h2>{{$room ? "Название корпуса: ".$room->corpus->corpus_name.", Номер комнаты: ".$room->room_number : "Ошибка"}}</h2>
-@if($room)
-    <table border="1">
+@extends('layout')
+@section('content')
+<div class="row justify-content-center">
+    <h2 class="row justify-content-center">{{$room ? "Название корпуса: ".$room->corpus->corpus_name.", Номер комнаты: ".$room->room_number : "Ошибка"}}</h2>
+    @if($room)
+    <div class="col-4">
+        <table class="table table-bordered">
         <thead>
         <tr>
             <td>ФИО</td>
@@ -26,7 +22,13 @@
                     ->diffInDays(Carbon::parse($guest->pivot->check_in))}}</td>
             </tr>
         @endforeach
-    </table>
-@endif
-</body>
-</html>
+        </table>
+    </div>
+   @endif
+    <div class="row justify-content-center ">
+        <div class="col-4">
+            <button class="btn btn-primary"><a style="color: white" href="{{url('corpus/'.$room->corpus_id)}}">Назад</a></button>
+        </div>
+    </div>
+</div>
+@endsection

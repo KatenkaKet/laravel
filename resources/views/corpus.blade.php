@@ -1,13 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>609-11</title>
-</head>
-<body>
-    <h2>{{$corpus ? "Список ".$corpus->corpus_name : "Неверный ID категории"}}</h2>
+@extends('layout')
+@section('content')
+<div class="row justify-content-center">
+    <h2 class="row justify-content-center">{{$corpus ? "Список комнат корпуса: ".$corpus->corpus_name : "Неверный ID категории"}}</h2>
     @if($corpus)
-    <table border="1">
+    <div class="col-4">
+        <table class="table table-bordered">
         <thead>
             <tr>
                 <td>id</td>
@@ -21,12 +18,18 @@
             <tr>
                 <td>{{$room->id}}</td>
                 <td>{{$room->corpus_id}}</td>
-                <td>{{$room->room_number}}</td>
+                <td><a href="{{url('room/'.$room->id)}}">{{$room->room_number}}</a></td>
                 <td>{{$room->bed_number}}</td>
                 <td>{{$room->price}}</td>
             </tr>
         @endforeach
-    </table>
+        </table>
+    </div>
     @endif
-</body>
-</html>
+    <div class="row justify-content-center ">
+        <div class="col-4">
+            <button class="btn btn-primary"><a style="color: white" href="{{url('corpuses')}}">Назад</a></button>
+        </div>
+    </div>
+</div>
+@endsection
