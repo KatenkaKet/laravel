@@ -19,7 +19,7 @@
                 </select>
                 <div id="corpusHelp" class="form-text">Выберите корпус</div>
                 @error('corpus_id')
-                <div class="invalid-feedback">{{$message}}</div>
+                <div class="is-invalid">{{$message}}</div>
                 @enderror
             </div>
             <div class="mb-3">
@@ -28,7 +28,7 @@
                        id="room_number" name="room_number" aria-describedby="room_numberHelp" value="{{ old('room_number') }}" >
                 <div id="room_numberHelp" class="form-text">Введите номер комнаты</div>
                 @error('room_number')
-                <div class="invalid-feedback">{{$message}}</div>
+                <div class="is-invalid">{{$message}}</div>
                 @enderror
             </div>
 

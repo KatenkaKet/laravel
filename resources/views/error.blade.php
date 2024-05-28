@@ -1,3 +1,4 @@
+
 <div class="container" style="margin-top:80px">
     @error('email')
     <div class="alert alert-warning" role="alert">{{$message}}</div>
