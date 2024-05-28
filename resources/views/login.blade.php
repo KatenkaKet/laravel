@@ -19,9 +19,7 @@
                             <li><a class="dropdown-item" href="#"></a>...</li>
                         </ul>
                     </li>
-                    @if(Auth::user())
-                    <li class="nav-item"><a class="nav-link" href="{{url('guest/'.Auth::user()->id)}}">Бронь</a></li>
-                    @endif
+                    @if(Auth::user())<li class="nav-item"><a class="nav-link" href="{{url('guest/'.Auth::user()->id)}}">Бронь</a></li>@endif
                     <li class="nav-item"><a class="nav-link" href="{{url('corpuses')}}">Корпусы</a></li>
                 </ul>
                 @if(!Auth::user())
@@ -35,10 +33,7 @@
                     </form>
                 @else
                     <ul class="navbar-nav">
-                        <a class="nav-link active" href="#">
-                            <span/>
-                            {{Auth::user()->name}}
-                        </a>
+                        <a class="nav-link active" href="#"><span/>{{Auth::user()->name}}</a>
                         <a class="btn btn-outline-success my-2 my-sm-0" href={{url('logout')}}>Выйти</a>
                     </ul>
                 @endif
