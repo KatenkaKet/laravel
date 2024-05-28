@@ -112,8 +112,7 @@ class RoomController extends Controller
     public function destroy(string $id)
     {
         if(! Gate::allows('destroy-room', Room::all()->where('id', $id)->first())){
-            return redirect('/error')->with('message',
-            'У вас нет разрешения на удаление товара номер ' . $id);
+            return redirect('/room')->withErrors(['delete' => 'У вас нет разрешения на удаление данного номера',] );
         }
 
         Room::destroy($id);

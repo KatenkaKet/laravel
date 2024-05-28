@@ -21,7 +21,7 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
             return redirect()->intended('/')->withErrors([
-                'succsecc' => 'Вы успешно вошли в систему',
+                'success' => 'Вы успешно вошли в систему',
             ]);
         }
         return back()->withErrors([
@@ -41,7 +41,7 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return redirect('/')->withErrors([
-            'succsecc' => 'Вы успешно вышли из системы',
+            'success' => 'Вы успешно вышли из системы',
         ]);
     }
 
