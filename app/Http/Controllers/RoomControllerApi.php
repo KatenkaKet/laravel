@@ -7,12 +7,17 @@ use Illuminate\Http\Request;
 
 class RoomControllerApi extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request) {
+        $perPage = $request->input('per_page', 5);
+        $page = $request->input('page', 0);
+        $offset = $perPage * $page;
+        return response(Room::limit($perPage)->offset($offset)->get());
+    }
+
+
+    public function total()
     {
-        return response(Room::all());
+        return response(Room::count());
     }
 
     /**

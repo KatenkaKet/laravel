@@ -10,9 +10,22 @@ class CorpusControllerApi extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+//    public function index(Request $request)
+//    {
+//        return response(Corpus::limit($request->perpage ?? 5)->offset(($request->perpage ?? 5)* ($request->page ?? 0))->get());
+//    }
+
+    public function index(Request $request) {
+        $perPage = $request->input('per_page', 5);
+        $page = $request->input('page', 0);
+        $offset = $perPage * $page;
+        return response(Corpus::limit($perPage)->offset($offset)->get());
+    }
+
+
+    public function total()
     {
-        return response(Corpus::all());
+        return response(Corpus::all()->count());
     }
 
     /**

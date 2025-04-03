@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\CorpusControllerApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
 Route::get('/corpuses', [\App\Http\Controllers\CorpusControllerApi::class, 'index']);
 Route::get('/corpus/{id}', [\App\Http\Controllers\CorpusControllerApi::class, 'show']);
 
@@ -42,3 +43,6 @@ Route::group(['middleware' => ['auth:sanctum']], function (){
     });
     Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 });
+
+Route::get('/corpuses_total', [CorpusControllerApi::class, 'total']);
+Route::get('/room_total', [\App\Http\Controllers\RoomControllerApi::class, 'total']);
