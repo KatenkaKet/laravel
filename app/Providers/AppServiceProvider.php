@@ -23,9 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+//        $this->registerPolicies();
         Paginator::defaultView('pagination::default');
+
         Gate::define('destroy-room', function (User $user, Room $room){
             return $user->is_admin OR $room->price < 2000;
+        });
+
+        Gate::define('create-corpus', function (User $user){
+            return true;
         });
     }
 }

@@ -38,6 +38,7 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function (){
     Route::get('/room', [\App\Http\Controllers\RoomControllerApi::class, 'index']);
+    Route::post('/corpus', [CorpusControllerApi::class, 'store']);
     Route::get('/user', function(Request $request){
         return $request->user();
     });
