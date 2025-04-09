@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('corpuses', function (Blueprint $table) {
             $table->id();
             $table->string('corpus_name', 255);
+            $table->string('image_url', 255)->default('https://storage.yandexcloud.net/surgu-pir/14754740.jpg');
         });
     }
 
